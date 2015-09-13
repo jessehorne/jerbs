@@ -88,7 +88,9 @@
     // Map
     var map = {};
 
-    map.map = L.mapbox.map('map', 'mapbox.streets');
+    map.map = L.mapbox.map('map', 'mapbox.streets').setView([
+        39.50, -98.35
+    ], 4);
     map.el = document.getElementById(
         'map');
     map.markers = new L.MarkerClusterGroup();
@@ -101,8 +103,7 @@
 
         user.position = [lat, lng];
 
-
-
+        jerbs.getData();
         // map.map.setView(user.position, 10);
     });
 
@@ -113,21 +114,4 @@
     map.markers.on('mouseout', function(e) {
         e.layer.closePopup();
     });
-
-    // onload
-    window.onload = function() {
-        // handle user.data
-        if (user.data == null) {
-            // jerbs_data needs to be created
-            user.data = {};
-            localStorage.setItem('jerbs_data', JSON.stringify(user.data));
-            // console.log("jerbs_data was created");
-        } else {
-            // jerbs_data exists already
-
-            // console.log("jerbs_data exists");
-        }
-
-        jerbs.getData('web developer');
-    }
 })();
