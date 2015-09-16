@@ -12,6 +12,8 @@
 
         if (typeof location == "string") {
             map.geocoder.query(location, function(err, data) {
+                if (!data) return;
+
                 var lat = data.latlng[0];
                 var lng = data.latlng[1];
 
@@ -67,7 +69,7 @@
                     if (location == "Anywhere") {
                         // anywhere todo
                         jerbs.addMarker(title, item.company,
-                            user.location, item.url);
+                            user.position, item.url);
                     } else {
                         jerbs.addMarker(title, item.company,
                             location, item.url);
@@ -78,12 +80,7 @@
         });
     }
 
-    // User
     var user = {};
-    user.data = JSON.parse(localStorage.getItem('jerbs_data'));
-    user.save = function() {
-        localStorage.set('jerbs_data', user.data);
-    }
 
     // Map
     var map = {};
