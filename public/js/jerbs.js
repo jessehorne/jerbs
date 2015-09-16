@@ -64,7 +64,8 @@
                 for (var i = 0; i < data.length; i++) {
                     var item = data[i];
                     var location = item.location;
-                    var title = item.title;
+                    var title = 'Location - ' + location +
+                        "<br/>" + item.title;
 
                     if (location == "Anywhere") {
                         // anywhere todo
